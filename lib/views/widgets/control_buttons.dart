@@ -23,7 +23,7 @@ class ControlButtons extends ConsumerWidget {
   Widget _buildStartButton(BuildContext context, TimerViewModel timerNotifier) {
     return SizedBox(
       width: context.isMobile ? double.infinity : 200,
-      height: context.isMobile ? 56 : 64,
+      height: context.isMobile ? 72 : 84,
       child: ElevatedButton.icon(
         onPressed: () => timerNotifier.startTimer(),
         icon: const Icon(Icons.play_arrow, size: 24),
@@ -55,7 +55,7 @@ class ControlButtons extends ConsumerWidget {
       children: [
         SizedBox(
           width: context.isMobile ? 140 : 160,
-          height: context.isMobile ? 48 : 56,
+          height: context.isMobile ? 64 : 72,
           child: ElevatedButton.icon(
             onPressed: () => timerNotifier.nextTimer(),
             icon: const Icon(Icons.skip_next, size: 20),
