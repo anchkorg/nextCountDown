@@ -31,6 +31,7 @@ RUN find /app/build/web -name "*.png" -type f || echo "❌ No PNG files found"
 FROM nginx:1.21.1-alpine
 RUN rm -rf /usr/share/nginx/html
 COPY --from=build-env /app/build/web /usr/share/nginx/html
+COPY --from=build-env /app/build/web/assets/assets/images/generated_image.png /usr/share/nginx/html/assets/images/generated_image.png
 COPY nginx.conf /etc/nginx/nginx.conf
 RUN ls -la /usr/share/nginx/html/ || echo "❌ /usr/share/nginx/html/assets/images/ directory not found"
 RUN ls -la /usr/share/nginx/html/assets/ || echo "❌ /usr/share/nginx/html/assets/images/ directory not found"
