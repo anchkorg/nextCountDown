@@ -24,8 +24,8 @@ RUN ls -la /app/assets/images/ || echo "❌ assets/images/ directory not found"
 RUN flutter clean
 RUN flutter pub get
 RUN flutter build web --wasm --release --no-tree-shake-icons
-RUN ls -la build/web/assets/ || echo "❌ No assets in build output"
-RUN find build/web -name "*.png" -type f || echo "❌ No PNG files found"
+RUN ls -la /app/build/web/assets/ || echo "❌ No assets in build output"
+RUN find /app/build/web -name "*.png" -type f || echo "❌ No PNG files found"
 
 # Stage 2 - Create the run-time image
 FROM nginx:1.21.1-alpine
