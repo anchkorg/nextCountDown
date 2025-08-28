@@ -17,7 +17,7 @@ class HomePage extends ConsumerWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/generated_image.png'),
+            image: AssetImage('assets/images/generated_image.png'),
             /**            NetworkImage(
               'https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/add6bf84-a961-40c7-859b-f0f19d750fda.png',
             ), */

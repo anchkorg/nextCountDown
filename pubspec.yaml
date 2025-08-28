@@ -100,6 +100,7 @@ flutter:
   assets:
     - assets/images/
     - assets/audio/
+  #  - assets/images/generated_image.png
 
   #fonts:
   #  - family: CustomTimer
