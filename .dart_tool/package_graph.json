@@ -7,6 +7,7 @@
       "name": "nextcountdown",
       "version": "1.0.0+1",
       "dependencies": [
+        "cupertino_icons",
         "equatable",
         "flutter",
         "flutter_localizations",
@@ -283,6 +284,11 @@
         "riverpod",
         "state_notifier"
       ]
+    },
+    {
+      "name": "cupertino_icons",
+      "version": "1.0.8",
+      "dependencies": []
     },
     {
       "name": "flutter",
@@ -878,6 +884,11 @@
       ]
     },
     {
+      "name": "synchronized",
+      "version": "3.4.0",
+      "dependencies": []
+    },
+    {
       "name": "uuid",
       "version": "4.5.1",
       "dependencies": [
@@ -888,14 +899,19 @@
       ]
     },
     {
-      "name": "synchronized",
-      "version": "3.4.0",
-      "dependencies": []
-    },
-    {
       "name": "rxdart",
       "version": "0.28.0",
       "dependencies": []
+    },
+    {
+      "name": "audio_session",
+      "version": "0.1.25",
+      "dependencies": [
+        "flutter",
+        "flutter_web_plugins",
+        "meta",
+        "rxdart"
+      ]
     },
     {
       "name": "just_audio_web",
@@ -914,16 +930,6 @@
       "dependencies": [
         "flutter",
         "plugin_platform_interface"
-      ]
-    },
-    {
-      "name": "audio_session",
-      "version": "0.1.25",
-      "dependencies": [
-        "flutter",
-        "flutter_web_plugins",
-        "meta",
-        "rxdart"
       ]
     },
     {

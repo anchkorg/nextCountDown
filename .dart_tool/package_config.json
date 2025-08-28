@@ -146,6 +146,12 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "cupertino_icons",
+      "rootUri": "file:///C:/Users/patrick/AppData/Local/Pub/Cache/hosted/pub.dev/cupertino_icons-1.0.8",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
       "name": "custom_lint",
       "rootUri": "file:///C:/Users/patrick/AppData/Local/Pub/Cache/hosted/pub.dev/custom_lint-0.7.6",
       "packageUri": "lib/",
