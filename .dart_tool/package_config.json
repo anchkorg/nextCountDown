@@ -345,9 +345,9 @@
     },
     {
       "name": "just_audio",
-      "rootUri": "file:///C:/Users/patrick/AppData/Local/Pub/Cache/hosted/pub.dev/just_audio-0.9.46",
+      "rootUri": "file:///C:/Users/patrick/AppData/Local/Pub/Cache/hosted/pub.dev/just_audio-0.10.4",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.6"
     },
     {
       "name": "just_audio_platform_interface",

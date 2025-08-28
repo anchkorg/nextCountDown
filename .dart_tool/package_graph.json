@@ -227,7 +227,7 @@
     },
     {
       "name": "just_audio",
-      "version": "0.9.46",
+      "version": "0.10.4",
       "dependencies": [
         "async",
         "audio_session",
@@ -239,6 +239,7 @@
         "path",
         "path_provider",
         "rxdart",
+        "synchronized",
         "uuid"
       ]
     },
@@ -887,19 +888,14 @@
       ]
     },
     {
-      "name": "rxdart",
-      "version": "0.28.0",
+      "name": "synchronized",
+      "version": "3.4.0",
       "dependencies": []
     },
     {
-      "name": "audio_session",
-      "version": "0.1.25",
-      "dependencies": [
-        "flutter",
-        "flutter_web_plugins",
-        "meta",
-        "rxdart"
-      ]
+      "name": "rxdart",
+      "version": "0.28.0",
+      "dependencies": []
     },
     {
       "name": "just_audio_web",
@@ -918,6 +914,16 @@
       "dependencies": [
         "flutter",
         "plugin_platform_interface"
+      ]
+    },
+    {
+      "name": "audio_session",
+      "version": "0.1.25",
+      "dependencies": [
+        "flutter",
+        "flutter_web_plugins",
+        "meta",
+        "rxdart"
       ]
     },
     {
@@ -1212,11 +1218,6 @@
     {
       "name": "sprintf",
       "version": "7.0.0",
-      "dependencies": []
-    },
-    {
-      "name": "synchronized",
-      "version": "3.4.0",
       "dependencies": []
     },
     {

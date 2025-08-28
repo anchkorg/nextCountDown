@@ -46,7 +46,7 @@ dependencies:
   flutter_svg: ^2.0.10
 
   # Audio Support
-  just_audio: ^0.9.40
+  just_audio: ^0.10.4
   flutter_tts: ^4.2.0
 
   # Local Storage
