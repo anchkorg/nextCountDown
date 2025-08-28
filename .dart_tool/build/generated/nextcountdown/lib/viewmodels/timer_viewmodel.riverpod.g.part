@@ -1,0 +1,22 @@
+// **************************************************************************
+// RiverpodGenerator
+// **************************************************************************
+
+String _$timerViewModelHash() => r'56fabf64c43df0643a4709571cdf453a4ee0a4e3';
+
+/// See also [TimerViewModel].
+@ProviderFor(TimerViewModel)
+final timerViewModelProvider =
+    AutoDisposeNotifierProvider<TimerViewModel, TimerModel>.internal(
+      TimerViewModel.new,
+      name: r'timerViewModelProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$timerViewModelHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+typedef _$TimerViewModel = AutoDisposeNotifier<TimerModel>;
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
