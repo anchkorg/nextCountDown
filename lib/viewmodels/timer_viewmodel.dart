@@ -18,18 +18,21 @@ class TimerViewModel extends _$TimerViewModel {
     });
 
     final settings = ref.watch(settingsViewModelProvider);
-    return TimerModel.initial(minutes: settings.defaultMinutes);
+    return TimerModel.initial(
+      minutes: settings.defaultMinutes,
+      handoverTime: settings.defaultHandoverTime,
+    );
   }
 
   void startTimer() {
     if (state.status == TimerStatus.running) return;
 
     state = state.copyWith(status: TimerStatus.running);
-
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+    _handleTimerStart();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) async {
       if (state.remainingTimeInSeconds > 0) {
         final newRemainingTime = state.remainingTimeInSeconds - 1;
-
+        int newHandoverTime = state.handoverTime;
         // Handle voice announcements
         _handleVoiceAnnouncements(newRemainingTime);
 
@@ -37,7 +40,12 @@ class TimerViewModel extends _$TimerViewModel {
 
         if (newRemainingTime == 0) {
           _handleTimerComplete();
+
           stopTimer();
+          await Future.delayed(Duration(seconds: newHandoverTime));
+          // 3 秒後繼續執行這裡的程式碼
+
+          startTimer();
         }
       }
     });
@@ -105,14 +113,22 @@ class TimerViewModel extends _$TimerViewModel {
     }
   }
 
+  void _handleTimerStart() {
+    final audioService = ref.read(audioServiceProvider);
+    final settings = ref.read(settingsViewModelProvider);
+    if (settings.soundEnabled) {
+      audioService.playAlert();
+    }
+    audioService.speak('開始');
+  }
+
   void _handleTimerComplete() {
     _timer?.cancel();
     state = state.copyWith(status: TimerStatus.completed);
 
     final audioService = ref.read(audioServiceProvider);
     final settings = ref.read(settingsViewModelProvider);
-
-    audioService.speak('時間到');
+    audioService.speak('時間到，下一個');
 
     if (settings.soundEnabled) {
       audioService.playAlert();

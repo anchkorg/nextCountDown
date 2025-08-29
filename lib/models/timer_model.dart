@@ -5,19 +5,22 @@ enum TimerStatus { initial, running, paused, completed }
 class TimerModel extends Equatable {
   final int totalTimeInSeconds;
   final int remainingTimeInSeconds;
+  final int handoverTime;
   final TimerStatus status;
 
   const TimerModel({
     required this.totalTimeInSeconds,
     required this.remainingTimeInSeconds,
+    required this.handoverTime,
     required this.status,
   });
 
-  factory TimerModel.initial({int minutes = 1}) {
+  factory TimerModel.initial({int minutes = 1, int handoverTime = 3}) {
     final totalSeconds = minutes * 60;
     return TimerModel(
       totalTimeInSeconds: totalSeconds,
       remainingTimeInSeconds: totalSeconds,
+      handoverTime: handoverTime,
       status: TimerStatus.initial,
     );
   }
@@ -25,12 +28,14 @@ class TimerModel extends Equatable {
   TimerModel copyWith({
     int? totalTimeInSeconds,
     int? remainingTimeInSeconds,
+    int? handoverTime,
     TimerStatus? status,
   }) {
     return TimerModel(
       totalTimeInSeconds: totalTimeInSeconds ?? this.totalTimeInSeconds,
       remainingTimeInSeconds:
           remainingTimeInSeconds ?? this.remainingTimeInSeconds,
+      handoverTime: handoverTime ?? this.handoverTime,
       status: status ?? this.status,
     );
   }

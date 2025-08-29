@@ -34,7 +34,7 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter clean
-      - run: flutter build web --wasm --release --no-tree-shake-icons
+      - run: flutter build web --wasm --release --no-tree-shake-icons --no-wasm-dry-run
 
       - name: "Setup QEMU"
         uses: docker/setup-qemu-action@v3

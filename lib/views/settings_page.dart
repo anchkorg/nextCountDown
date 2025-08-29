@@ -13,11 +13,13 @@ class SettingsPage extends ConsumerStatefulWidget {
 
 class _SettingsPageState extends ConsumerState<SettingsPage> {
   late TextEditingController _minutesController;
+  late TextEditingController _secondsController;
 
   @override
   void initState() {
     super.initState();
     _minutesController = TextEditingController();
+    _secondsController = TextEditingController();
   }
 
   @override
@@ -33,6 +35,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     // Update controller when settings change
     if (_minutesController.text != settings.defaultMinutes.toString()) {
       _minutesController.text = settings.defaultMinutes.toString();
+    }
+    if (_secondsController.text != settings.defaultHandoverTime.toString()) {
+      _secondsController.text = settings.defaultHandoverTime.toString();
     }
 
     return Scaffold(
@@ -128,6 +133,66 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('請輸入有效的分鐘數 (1-60)')),
+                          );
+                        }
+                      },
+                      child: const Text('保存'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+
+        const SizedBox(height: 16),
+
+        Card(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //  Text('計時器設定', style: Theme.of(context).textTheme.titleLarge),
+                const SizedBox(height: 16),
+
+                // Default Minutes Setting
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _secondsController,
+                        decoration: const InputDecoration(
+                          labelText: '預設交換時間 (秒鐘)',
+                          helperText: '請輸入 1-60 秒鐘',
+                        ),
+                        keyboardType: TextInputType.number,
+                        onSubmitted: (value) {
+                          final seconds = int.tryParse(value);
+                          if (seconds != null &&
+                              seconds >= 1 &&
+                              seconds <= 60) {
+                            ref
+                                .read(settingsViewModelProvider.notifier)
+                                .updateDefaultHandoverTime(seconds);
+                          }
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    ElevatedButton(
+                      onPressed: () {
+                        final seconds = int.tryParse(_secondsController.text);
+                        if (seconds != null && seconds >= 1 && seconds <= 60) {
+                          ref
+                              .read(settingsViewModelProvider.notifier)
+                              .updateDefaultHandoverTime(seconds);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('設定已保存')),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('請輸入有效的秒鐘數 (1-60)')),
                           );
                         }
                       },

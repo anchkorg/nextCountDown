@@ -29,6 +29,14 @@ class SettingsViewModel extends _$SettingsViewModel {
     await storageService.saveSettings(newSettings);
   }
 
+  Future<void> updateDefaultHandoverTime(int seconds) async {
+    final newSettings = state.copyWith(defaultHandoverTime: seconds);
+    state = newSettings;
+
+    final storageService = ref.read(storageServiceProvider);
+    await storageService.saveSettings(newSettings);
+  }
+
   Future<void> updateSoundEnabled(bool enabled) async {
     final newSettings = state.copyWith(soundEnabled: enabled);
     state = newSettings;

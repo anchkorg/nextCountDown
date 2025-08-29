@@ -21,7 +21,7 @@ WORKDIR /app/#
 RUN ls -la /app/assets/images/ || echo "❌ assets/images/ directory not found"
 RUN flutter clean
 RUN flutter pub get
-RUN flutter build web --release --no-tree-shake-icons
+RUN flutter build web --release --no-tree-shake-icons --no-wasm-dry-run
 RUN ls -la /app/build/web/assets/ || echo "❌ No assets in build output"
 RUN find /app/build/web -name "*.png" -type f || echo "❌ No PNG files found"
 
