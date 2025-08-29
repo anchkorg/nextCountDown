@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nextcountdown/Shared/app_constants.dart';
 import 'package:nextcountdown/models/timer_model.dart';
 import 'package:nextcountdown/viewmodels/timer_viewmodel.dart';
 import 'package:nextcountdown/views/widgets/responsive_layout.dart';
@@ -53,51 +54,67 @@ class ControlButtons extends ConsumerWidget {
       spacing: context.isMobile ? 12 : 16,
       runSpacing: 12,
       children: [
-        SizedBox(
-          width: context.isMobile ? 140 : 160,
-          height: context.isMobile ? 64 : 72,
-          child: ElevatedButton.icon(
-            onPressed: () => timerNotifier.nextTimer(),
-            icon: const Icon(Icons.skip_next, size: 20),
-            label: Text(
-              '下一個',
-              style: TextStyle(
-                fontSize: context.isMobile ? 16 : 18,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(context.isMobile ? 10 : 12),
-              ),
+        ControlButtonWidget(
+          label: '下一個',
+          onTap: () => timerNotifier.nextTimer(),
+          buttonStyle: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blue,
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
             ),
           ),
         ),
-        SizedBox(
-          width: context.isMobile ? 140 : 160,
-          height: context.isMobile ? 48 : 56,
-          child: ElevatedButton.icon(
-            onPressed: () => timerNotifier.stopTimer(),
-            icon: const Icon(Icons.stop, size: 20),
-            label: Text(
-              '停止',
-              style: TextStyle(
-                fontSize: context.isMobile ? 16 : 18,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red,
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(context.isMobile ? 10 : 12),
-              ),
+        ControlButtonWidget(
+          label: '停止',
+          onTap: () => timerNotifier.stopTimer(),
+          buttonStyle: ElevatedButton.styleFrom(
+            backgroundColor: Colors.red,
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(context.isMobile ? 8 : 12),
             ),
           ),
         ),
       ],
+    );
+  }
+}
+
+class ControlButtonWidget extends StatelessWidget {
+  const ControlButtonWidget({
+    super.key,
+    required this.label,
+    required this.onTap,
+    required this.buttonStyle,
+  });
+  final String label;
+  final VoidCallback onTap;
+  final ButtonStyle buttonStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: context.isMobile
+          ? AppConstants.mobileControlButtonWidth
+          : AppConstants.desktopControlButtonWidth,
+      height: context.isMobile
+          ? AppConstants.mobileButtonHeight
+          : AppConstants.desktopButtonHeight,
+      child: ElevatedButton.icon(
+        onPressed: onTap,
+        icon: const Icon(Icons.skip_next, size: 20),
+        label: Text(
+          label,
+          style: TextStyle(
+            fontSize: context.isMobile
+                ? AppConstants.mobileControlButtonFontSize
+                : AppConstants.desktopControlButtonFontSize,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        style: buttonStyle,
+      ),
     );
   }
 }

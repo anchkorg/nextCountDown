@@ -37,7 +37,7 @@ class AudioService {
     //await _flutterTts.setLanguage('zh-HK');
     await _flutterTts.setLanguage('zh-CN');
     await _flutterTts.setPitch(1.0);
-    await _flutterTts.setSpeechRate(0.8);
+    await _flutterTts.setSpeechRate(0.9);
 
     // Fallback to Mandarin Chinese if Cantonese not available
     final languages = await _flutterTts.getLanguages;

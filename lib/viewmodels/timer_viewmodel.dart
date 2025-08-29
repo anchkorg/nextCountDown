@@ -37,6 +37,7 @@ class TimerViewModel extends _$TimerViewModel {
 
         if (newRemainingTime == 0) {
           _handleTimerComplete();
+          stopTimer();
         }
       }
     });
@@ -81,10 +82,10 @@ class TimerViewModel extends _$TimerViewModel {
 
     switch (remainingSeconds) {
       case 20:
-        audioService.speak('仲有二十秒');
+        audioService.speak('二十秒');
         break;
       case 10:
-        audioService.speak('仲有十秒');
+        audioService.speak('十秒');
         break;
       case 5:
         audioService.speak('五');
@@ -110,6 +111,8 @@ class TimerViewModel extends _$TimerViewModel {
 
     final audioService = ref.read(audioServiceProvider);
     final settings = ref.read(settingsViewModelProvider);
+
+    audioService.speak('時間到');
 
     if (settings.soundEnabled) {
       audioService.playAlert();
