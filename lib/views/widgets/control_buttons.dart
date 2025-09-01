@@ -26,7 +26,10 @@ class ControlButtons extends ConsumerWidget {
       width: context.isMobile ? double.infinity : 200,
       height: context.isMobile ? 72 : 84,
       child: ElevatedButton.icon(
-        onPressed: () => timerNotifier.startTimer(),
+        onPressed: () {
+          timerNotifier.handleTimerStart();
+          timerNotifier.startTimer();
+        },
         icon: const Icon(Icons.play_arrow, size: 24),
         label: Text(
           '開始',

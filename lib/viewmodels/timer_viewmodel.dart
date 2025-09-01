@@ -28,7 +28,6 @@ class TimerViewModel extends _$TimerViewModel {
     if (state.status == TimerStatus.running) return;
 
     state = state.copyWith(status: TimerStatus.running);
-    _handleTimerStart();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) async {
       if (state.remainingTimeInSeconds > 0) {
         final newRemainingTime = state.remainingTimeInSeconds - 1;
@@ -44,6 +43,7 @@ class TimerViewModel extends _$TimerViewModel {
           stopTimer();
           await Future.delayed(Duration(seconds: newHandoverTime));
           // 3 秒後繼續執行這裡的程式碼
+          handleTimerStart();
 
           startTimer();
         }
@@ -68,6 +68,7 @@ class TimerViewModel extends _$TimerViewModel {
     _timer?.cancel();
     final settings = ref.read(settingsViewModelProvider);
     state = TimerModel.initial(minutes: settings.defaultMinutes);
+    handleTimerStart();
     startTimer();
   }
 
@@ -113,7 +114,7 @@ class TimerViewModel extends _$TimerViewModel {
     }
   }
 
-  void _handleTimerStart() {
+  void handleTimerStart() {
     final audioService = ref.read(audioServiceProvider);
     final settings = ref.read(settingsViewModelProvider);
     if (settings.soundEnabled) {
