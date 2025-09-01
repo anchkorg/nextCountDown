@@ -26,7 +26,12 @@ class TimerViewModel extends _$TimerViewModel {
 
   void startTimer() {
     if (state.status == TimerStatus.running) return;
-
+    final audioService = ref.read(audioServiceProvider);
+    final settings = ref.read(settingsViewModelProvider);
+    if (settings.soundEnabled) {
+      audioService.playAlert();
+    }
+    audioService.speak('開始');
     state = state.copyWith(status: TimerStatus.running);
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) async {
       if (state.remainingTimeInSeconds > 0) {
