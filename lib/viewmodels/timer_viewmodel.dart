@@ -73,6 +73,11 @@ class TimerViewModel extends _$TimerViewModel {
     _timer?.cancel();
     final settings = ref.read(settingsViewModelProvider);
     state = TimerModel.initial(minutes: settings.defaultMinutes);
+    final audioService = ref.read(audioServiceProvider);
+    if (settings.soundEnabled) {
+      audioService.playAlert();
+    }
+    audioService.speak('下一個');
     handleTimerStart();
     startTimer();
   }
