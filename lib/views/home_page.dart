@@ -87,14 +87,16 @@ class HomePage extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          decoration: BoxDecoration(color: Colors.white),
+          decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.6)),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
               '倒數計時器',
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: AppColors.timerDisplay,
+                color: (Theme.of(context).brightness == Brightness.dark)
+                    ? AppColors.timerDisplayDark
+                    : AppColors.timerDisplayLight,
               ),
             ),
           ),

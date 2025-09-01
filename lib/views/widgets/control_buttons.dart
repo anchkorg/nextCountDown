@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nextcountdown/Shared/app_constants.dart';
 import 'package:nextcountdown/models/timer_model.dart';
+import 'package:nextcountdown/themes/app_theme.dart';
 import 'package:nextcountdown/viewmodels/timer_viewmodel.dart';
 import 'package:nextcountdown/views/widgets/responsive_layout.dart';
 
@@ -53,6 +54,8 @@ class ControlButtons extends ConsumerWidget {
     BuildContext context,
     TimerViewModel timerNotifier,
   ) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Wrap(
       spacing: context.isMobile ? 12 : 16,
       runSpacing: 12,
@@ -61,8 +64,10 @@ class ControlButtons extends ConsumerWidget {
           label: '下一個',
           onTap: () => timerNotifier.nextTimer(),
           buttonStyle: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            foregroundColor: Colors.white,
+            backgroundColor: isDark ? Colors.blue[400] : Colors.blue[600],
+            foregroundColor: isDark
+                ? AppColors.timerBackgroundDark
+                : AppColors.timerBackgroundLight,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
@@ -72,8 +77,10 @@ class ControlButtons extends ConsumerWidget {
           label: '停止',
           onTap: () => timerNotifier.stopTimer(),
           buttonStyle: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red,
-            foregroundColor: Colors.white,
+            backgroundColor: isDark ? Colors.red[400] : Colors.red[600],
+            foregroundColor: isDark
+                ? AppColors.timerBackgroundDark
+                : AppColors.timerBackgroundLight,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(context.isMobile ? 8 : 12),
             ),

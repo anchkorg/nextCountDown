@@ -98,8 +98,12 @@ class AppColors {
   static const Color error = Color(0xFFEF4444);
 
   // Timer specific colors
-  static const Color timerBackground = Color(0xFFF8FAFC);
-  static const Color timerDisplay = Color(0xFF1E293B);
-  static const Color timerActive = Color(0xFF059669);
-  static const Color timerWarning = Color(0xFFDC2626);
+  static const Color timerBackgroundLight = Color(0xFFF8FAFC);
+  static const Color timerBackgroundDark = Color(0xFF1F2937);
+  static const Color timerDisplayLight = Color(0xFF1E293B);
+  static const Color timerDisplayDark = Color(0xFFCBD5E1);
+  static const Color timerActiveLight = Color(0xFF059669);
+  static const Color timerActiveDark = Color(0xFF34D399);
+  static const Color timerWarningLight = Color(0xFFDC2626);
+  static const Color timerWarningDark = Color(0xFFFB7185);
 }

@@ -43,7 +43,7 @@ class TimerDisplay extends ConsumerWidget {
           ? 96
           : 120,
       fontWeight: FontWeight.bold,
-      color: _getTimerColor(timer),
+      color: _getTimerColor(context, timer),
       fontFeatures: const [FontFeature.tabularFigures()],
     );
 
@@ -57,10 +57,14 @@ class TimerDisplay extends ConsumerWidget {
           ':',
           style: textStyle.copyWith(
             color: timer.status == TimerStatus.running
-                ? AppColors.timerActive.withValues(
-                    alpha: 0.6,
-                  ) //withOpacity(0.6)
-                : AppColors.timerDisplay.withValues(
+                ? (Theme.of(context).brightness == Brightness.dark)
+                      ? AppColors.timerActiveDark.withValues(alpha: 0.6)
+                      : AppColors.timerActiveLight.withValues(
+                          alpha: 0.6,
+                        ) //withOpacity(0.6)
+                : (Theme.of(context).brightness == Brightness.dark)
+                ? AppColors.timerDisplayDark.withValues(alpha: 0.6)
+                : AppColors.timerDisplayLight.withValues(
                     alpha: 0.6,
                   ), //withOpacity(0.6),
           ),
@@ -84,7 +88,7 @@ class TimerDisplay extends ConsumerWidget {
         height: 8,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
-          color: _getProgressColor(timer),
+          color: _getProgressColor(context, timer),
         ),
         alignment: Alignment.centerLeft,
         child: Container(
@@ -92,7 +96,7 @@ class TimerDisplay extends ConsumerWidget {
           height: 8,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
-            color: _getProgressColor(timer),
+            color: _getProgressColor(context, timer),
           ),
         ),
       ),
@@ -119,31 +123,45 @@ class TimerDisplay extends ConsumerWidget {
     return Text(
       statusText,
       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-        color: _getTimerColor(timer).withValues(alpha: 0.8), //withOpacity(0.8),
+        color: _getTimerColor(
+          context,
+          timer,
+        ).withValues(alpha: 0.8), //withOpacity(0.8),
         fontWeight: FontWeight.w500,
       ),
     );
   }
 
-  Color _getTimerColor(TimerModel timer) {
+  Color _getTimerColor(BuildContext context, TimerModel timer) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     switch (timer.status) {
       case TimerStatus.running:
         return timer.remainingTimeInSeconds <= 10
-            ? AppColors.timerWarning
-            : AppColors.timerActive;
+            ? (Theme.of(context).brightness == Brightness.dark)
+                  ? AppColors.timerWarningDark
+                  : AppColors.timerWarningLight
+            : (Theme.of(context).brightness == Brightness.dark)
+            ? AppColors.timerActiveDark
+            : AppColors.timerActiveLight;
       case TimerStatus.completed:
         return AppColors.error;
       default:
-        return AppColors.timerDisplay;
+        return isDark
+            ? AppColors.timerDisplayDark
+            : AppColors.timerDisplayLight; // AppColors.timerDisplay;
     }
   }
 
-  Color _getProgressColor(TimerModel timer) {
+  Color _getProgressColor(BuildContext context, TimerModel timer) {
     switch (timer.status) {
       case TimerStatus.running:
         return timer.remainingTimeInSeconds <= 10
-            ? AppColors.timerWarning
-            : AppColors.timerActive;
+            ? (Theme.of(context).brightness == Brightness.dark)
+                  ? AppColors.timerWarningDark
+                  : AppColors.timerWarningLight
+            : (Theme.of(context).brightness == Brightness.dark)
+            ? AppColors.timerActiveDark
+            : AppColors.timerActiveLight;
       case TimerStatus.completed:
         return AppColors.error;
       default:
