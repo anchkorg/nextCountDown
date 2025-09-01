@@ -89,7 +89,7 @@ class HomePage extends ConsumerWidget {
         Container(
           decoration: BoxDecoration(
             color: (Theme.of(context).brightness == Brightness.dark)
-                ? Colors.black.withValues(alpha: 0.6)
+                ? Colors.black.withValues(alpha: 0.9)
                 : Colors.white.withValues(alpha: 0.6),
           ),
           child: Padding(
