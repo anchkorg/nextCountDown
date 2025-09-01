@@ -87,7 +87,11 @@ class HomePage extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.6)),
+          decoration: BoxDecoration(
+            color: (Theme.of(context).brightness == Brightness.dark)
+                ? AppColors.timerDisplayDark.withValues(alpha: 0.6)
+                : AppColors.timerDisplayLight.withValues(alpha: 0.6),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
