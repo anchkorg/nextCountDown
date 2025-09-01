@@ -89,8 +89,8 @@ class HomePage extends ConsumerWidget {
         Container(
           decoration: BoxDecoration(
             color: (Theme.of(context).brightness == Brightness.dark)
-                ? AppColors.timerDisplayDark.withValues(alpha: 0.6)
-                : AppColors.timerDisplayLight.withValues(alpha: 0.6),
+                ? Colors.black.withValues(alpha: 0.6)
+                : Colors.white.withValues(alpha: 0.6),
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
